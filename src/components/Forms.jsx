@@ -1,41 +1,32 @@
 import React, {useState} from "react";
 
 
-function form(){
+function Kindofform(){
 
-    const [Headingtext,setHeadingText]=useState("Hello");
-    const [styled,setstyled]=useState(false);
-    var name;
-  
-  function clicked(){
-    setHeadingText(name);
-  }
-  function mouseover(){
-    setstyled(true);
-  }
-  function mouseout(){
-    setstyled(false);
-  }
+  const [name,setName] = useState("");
+  const [heading,setHeading] = useState(""); // inorder to change anything on the webpage useState is used never try to store anything in a third variable and change it ex. dont try to store fullname as a variable and trigger it when clicked that doesnt work here
+
   function handleChange(event){
-    name=event.target.value;
+    setName(event.target.value);
+    
+  }
+
+  function handleSubmit(){
+    setHeading(name);
   }
     return(
         <div className="container">
-            <h1>{Headingtext}</h1>
+            <h1>Hello {heading}</h1>
             <input 
             type="text" 
             placeholder="Whats your name" 
             onChange={handleChange}
+            value={name}    // always specify attributes that we change as a js object ex. value attribute should be assigned {name} so it correspondes to the same name 
+            
             />
-            <button 
-            style={{ backgroundColor:styled?"black":"white"}} 
-            onClick={clicked}
-            onDoubleClick={doubleclicked} 
-            onMouseOver={mouseover}
-            onMouseOut={mouseout}
-            >Submit</button>
+            <button onClick={handleSubmit}>Submit</button>
         </div>
     )
 }
 
-export default form;
+export default Kindofform;
